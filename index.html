@@ -394,17 +394,6 @@
   footer .script{ color:var(--wine); font-size:1.3rem; display:block; margin-bottom:0.2rem; }
 
   a:focus-visible, button:focus-visible, input:focus-visible, .radio-pill:focus-within{ outline:2px solid var(--gold); outline-offset:2px; }
-
-  #music-toggle{
-    position:fixed; bottom:20px; right:20px; z-index:50;
-    width:44px; height:44px; border-radius:50%;
-    background:var(--wine); border:1px solid var(--gold);
-    color:var(--gold-light);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 3px 10px rgba(0,0,0,0.3);
-    cursor:pointer;
-  }
-  #music-toggle svg{ width:18px; height:18px; }
 </style>
 </head>
 <body>
@@ -630,7 +619,7 @@
 <!-- RSVP -->
 <section class="section" id="rsvp">
   <div class="center">
-    <div class="eyebrow">Antes de que el 1 de diciembre se despida</div>
+    <div class="eyebrow">Antes de que el 1 de noviembre se despida</div>
     <h2>Confirmar asistencia</h2>
     <p class="lead" id="rsvp-lead">Vuestra presencia sería la mayor dicha en este capítulo de nuestras vidas. Os rogamos confirmar, para que podamos aguardaros con el cariño que merecéis.</p>
     <p class="lead" id="guest-greeting" style="display:none; margin-top:0.6rem; font-weight:500; color:var(--wine);"></p>
@@ -665,14 +654,6 @@
   29 de diciembre de 2026 &middot; San Salvador
 </footer>
 
-<audio id="bg-music" loop preload="none">
-  <source src="musica-fondo.mp3" type="audio/mpeg">
-</audio>
-<button type="button" id="music-toggle" aria-label="Reproducir música">
-  <svg id="music-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-  <svg id="music-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-</button>
-
 <script>
   // Envelope open interaction
   const envelope = document.getElementById('envelope');
@@ -684,29 +665,9 @@
       inviteWrap.classList.add('reveal');
       inviteWrap.scrollIntoView({ behavior:'smooth', block:'start' });
     }, 550);
-    // Start background music on this same user gesture (required by browsers)
-    const music = document.getElementById('bg-music');
-    music.play().then(() => {
-      document.getElementById('music-icon-play').style.display = 'none';
-      document.getElementById('music-icon-pause').style.display = 'block';
-    }).catch(() => { /* file not provided yet, or user has sound blocked — ignore */ });
   }
   envelope.addEventListener('click', openEnvelope);
   envelope.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnvelope(); } });
-
-  // Music toggle button
-  const musicBtn = document.getElementById('music-toggle');
-  const musicEl = document.getElementById('bg-music');
-  const iconPlay = document.getElementById('music-icon-play');
-  const iconPause = document.getElementById('music-icon-pause');
-  musicBtn.addEventListener('click', () => {
-    if (musicEl.paused){
-      musicEl.play().then(() => { iconPlay.style.display='none'; iconPause.style.display='block'; }).catch(()=>{});
-    } else {
-      musicEl.pause();
-      iconPlay.style.display='block'; iconPause.style.display='none';
-    }
-  });
 
   const continueBtn = document.getElementById('continue-btn');
   continueBtn.addEventListener('click', () => {
