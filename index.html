@@ -449,8 +449,8 @@
 <!-- VERSE -->
 <section class="section" id="verse">
   <div class="verse-card center">
-    <p class="verse-text">&ldquo;Ponme como un sello sobre tu corazón, como una marca sobre tu brazo: porque fuerte es como la muerte el amor; duro como el sepulcro el celo: sus brasas, brasas de fuego, fuerte llama. Las muchas aguas no podrán apagar el amor, ni lo ahogarán los ríos.&rdquo;</p>
-    <div class="verse-ref">Cantares 8:6&ndash;7 &middot; Reina-Valera 1909</div>
+    <p class="verse-text">&ldquo;Ponme como sello sobre tu corazón, como sello sobre tu brazo; porque es fuerte el amor como la muerte; inflexibles, como el infierno, son los celos. Flechas de fuego son sus flechas, llamas divinas son sus llamas. Aguas inmensas no podrían apagar el amor, ni los ríos ahogarlo.&rdquo;</p>
+    <div class="verse-ref">Cantares 8:6&ndash;7 &middot; Biblia Católica</div>
   </div>
 </section>
 
@@ -500,7 +500,7 @@
   <div class="timeline-full">
     <div class="tl-item">
       <div class="tl-marker"><svg viewBox="0 0 48 48" fill="none" stroke="#B08D57" stroke-width="1.3"><path d="M24 6v10M18 12h12"/><path d="M14 42V22l10-6 10 6v20z"/><path d="M20 42v-10h8v10"/></svg></div>
-      <div class="tl-content"><div class="tl-time">2:00 PM</div><div class="tl-title">El sagrado juramento</div></div>
+      <div class="tl-content"><div class="tl-time">2:00 PM</div><div class="tl-title">El sagrado sacramento</div></div>
     </div>
     <div class="tl-item">
       <div class="tl-marker"><svg viewBox="0 0 48 48" fill="none" stroke="#B08D57" stroke-width="1.3"><rect x="8" y="16" width="32" height="22" rx="2"/><circle cx="24" cy="27" r="7"/><path d="M18 16l2.5-5h7l2.5 5"/></svg></div>
@@ -740,7 +740,12 @@
     "diego-moz": { name: "Diego Moz", max: 1 },
     "cincy-gonzales": { name: "Cincy Gonzales", max: 1 },
     "francisco-siguenza": { name: "Francisco Sigüenza", max: 2 },
-    "roberto-alas": { name: "Roberto Alas", max: 2 }
+    "roberto-alas": { name: "Roberto Alas", max: 2 },
+    "tulio-castillo": { name: "Tulio Castillo y su esposa", max: 2 },
+    "ondina-quesada": { name: "Ondina Quesada", max: 1 },
+    "tomas-castillo": { name: "Tomás Castillo y su esposa", max: 2 },
+    "oscar-castillo": { name: "Oscar Castillo y su esposa", max: 2 },
+    "hermanos-romero": { name: "Hermanos Romero", max: 3 }
   };
 
   (function applyGuestLink(){
@@ -757,7 +762,7 @@
     const opt0 = document.createElement('option');
     opt0.value = '0'; opt0.textContent = 'Solo yo';
     guestsSelect.appendChild(opt0);
-    for (let i = 1; i <= guest.max; i++){
+    for (let i = 1; i <= guest.max - 1; i++){
       const opt = document.createElement('option');
       opt.value = String(i);
       opt.textContent = i + (i === 1 ? ' acompañante' : ' acompañantes');
