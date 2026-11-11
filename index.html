@@ -633,11 +633,9 @@
         <label class="radio-pill" id="pill-no"><input type="radio" name="attending" value="no"> No podré ir</label>
       </div>
     </div>
-    <div class="field">
-      <label for="guests">Número de acompañantes</label>
-      <select id="guests" name="guests">
-        <option value="0">Solo yo</option><option value="1">1 acompañante</option><option value="2">2 acompañantes</option><option value="3">3 acompañantes</option>
-      </select>
+    <div class="field" id="companions-field">
+      <label for="companions">Nombres de tus acompañantes</label>
+      <textarea id="companions" name="acompanantes" rows="2" placeholder="Escribe el nombre de cada acompañante (déjalo vacío si asistes solo)"></textarea>
     </div>
     <div class="field"><label for="notes">Algo que debamos saber (alergias, restricciones, etc.)</label><textarea id="notes" name="notes" rows="3"></textarea></div>
     <button type="submit" class="btn gold-fill">Enviar confirmación</button>
@@ -752,21 +750,13 @@
     const params = new URLSearchParams(window.location.search);
     const key = params.get('g');
     const guest = key ? GUESTS[key] : null;
-    const guestsSelect = document.getElementById('guests');
     const greeting = document.getElementById('guest-greeting');
     const fullnameInput = document.getElementById('fullname');
-    if (!guest) return; // no personal link — keep the generic 0–3 dropdown
+    if (!guest) return; // sin link personal: formulario general
 
-    // Rebuild the dropdown to match exactly this guest's allowed companions
-    guestsSelect.innerHTML = '';
-    const opt0 = document.createElement('option');
-    opt0.value = '0'; opt0.textContent = 'Solo yo';
-    guestsSelect.appendChild(opt0);
-    for (let i = 1; i <= guest.max - 1; i++){
-      const opt = document.createElement('option');
-      opt.value = String(i);
-      opt.textContent = i + (i === 1 ? ' acompañante' : ' acompañantes');
-      guestsSelect.appendChild(opt);
+    // Con 1 solo espacio no hay acompañantes: se oculta el campo
+    if (guest.max <= 1){
+      document.getElementById('companions-field').style.display = 'none';
     }
 
     greeting.textContent = `Reservamos hasta ${guest.max} ${guest.max === 1 ? 'espacio' : 'espacios'} para ${guest.name}.`;
